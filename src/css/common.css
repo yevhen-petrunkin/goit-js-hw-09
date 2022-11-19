@@ -35,6 +35,7 @@ img {
   font-size: 28px;
   font-weight: bolder;
   font-size: 20px;
+  text-align: center;
   border: 2px solid teal;
   color: teal;
   border-radius: 4px;
@@ -44,7 +45,8 @@ img {
   outline: 1px solid tomato;
 }
 
-button[data-start] {
+button[data-start],
+button[data-stop] {
   min-width: 150px;
   min-height: 50px;
   font-weight: bolder;
@@ -53,16 +55,20 @@ button[data-start] {
   color: teal;
   background-color: gold;
   border-radius: 4px;
+  cursor: pointer;
 }
 
-button[data-start]:hover,
-button[data-start]:focus {
+button[data-start]:not(:disabled):hover,
+button[data-start]:not(:disabled):focus,
+button[data-stop]:not(:disabled):hover,
+button[data-stop]:not(:disabled):focus {
   border: 2px solid gold;
   color: gold;
   background-color: teal;
 }
 
-button[data-start]:disabled {
+button[data-start]:disabled,
+button[data-stop]:disabled {
   background-color: tomato;
 }
 
