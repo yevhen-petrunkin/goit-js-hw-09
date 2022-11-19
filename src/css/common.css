@@ -16,3 +16,66 @@ img {
   display: block;
   max-width: 100%;
 }
+
+.timer,
+.board-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+}
+
+.board-container {
+  padding-bottom: 10px;
+}
+
+#datetime-picker {
+  min-width: 300px;
+  min-height: 50px;
+  font-size: 28px;
+  font-weight: bolder;
+  font-size: 20px;
+  border: 2px solid teal;
+  color: teal;
+  border-radius: 4px;
+}
+
+#datetime-picker:focus {
+  outline: 1px solid tomato;
+}
+
+button[data-start] {
+  min-width: 150px;
+  min-height: 50px;
+  font-weight: bolder;
+  font-size: 20px;
+  border: 2px solid teal;
+  color: teal;
+  background-color: gold;
+  border-radius: 4px;
+}
+
+button[data-start]:hover,
+button[data-start]:focus {
+  border: 2px solid gold;
+  color: gold;
+  background-color: teal;
+}
+
+button[data-start]:disabled {
+  background-color: tomato;
+}
+
+.field span {
+  display: block;
+  min-width: 100px;
+  margin: 5px auto;
+  text-align: center;
+  font-weight: bolder;
+  font-size: 18px;
+  color: teal;
+}
+
+.field .value {
+  font-size: 32px;
+}
