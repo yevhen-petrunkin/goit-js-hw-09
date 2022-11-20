@@ -38,8 +38,8 @@ const timer = {
     }
 
     this.timerId = setInterval(() => {
-      currentTime = Date.now();
-      deltaTime = this.endTime - currentTime;
+      const currentTime = Date.now();
+      const deltaTime = this.endTime - currentTime;
       const { days, hours, minutes, seconds } = convertMs(deltaTime);
       updateTimerBoard({ days, hours, minutes, seconds });
       this.end(currentTime, this.endTime);
