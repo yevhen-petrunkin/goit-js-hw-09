@@ -19,6 +19,9 @@ function onFormSubmit(evt) {
 
 function trackPromises(delay, step, amount) {
   setTimeout(() => {
+    if (amount === 0) {
+      return;
+    }
     createPromise(promiseCounter, delayCounter);
 
     const intervalId = setInterval(() => {
