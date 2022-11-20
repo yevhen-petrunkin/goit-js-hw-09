@@ -10,7 +10,7 @@ const options = {
   onClose(selectedDates) {
     inputValue = selectedDates[0].getTime();
 
-    if (inputValue <= Date.now()) {
+    if (inputValue <= new Date().getTime()) {
       timer.isFutureDate = false;
       disableStartBtn();
       Notiflix.Notify.failure(NOTIFICATION, {
@@ -38,7 +38,8 @@ const timer = {
     }
 
     this.timerId = setInterval(() => {
-      currentTime = Date.now();
+      currentTime = new Date().getTime();
+      console.log(currentTime);
       deltaTime = this.endTime - currentTime;
       const { days, hours, minutes, seconds } = convertMs(deltaTime);
       updateTimerBoard({ days, hours, minutes, seconds });
