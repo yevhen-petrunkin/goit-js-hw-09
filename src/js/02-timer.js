@@ -75,6 +75,7 @@ disableStartBtn();
 timer.startBtnRef.addEventListener('click', onStartBtnClick);
 
 function onStartBtnClick() {
+  timer.startBtnRef.setAttribute('disabled', '');
   timer.start();
 }
 
