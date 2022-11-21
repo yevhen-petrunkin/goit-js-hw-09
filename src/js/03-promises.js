@@ -3,7 +3,6 @@ import Notiflix from 'notiflix';
 const formRef = document.querySelector('.form');
 const { delay, step, amount } = formRef.elements;
 
-let promiseCounter = 1;
 let delayCounter = 0;
 
 formRef.addEventListener('submit', onFormSubmit);
@@ -14,40 +13,30 @@ function onFormSubmit(evt) {
   const stepRef = Number(step.value);
   const amountRef = Number(amount.value);
   delayCounter = delayRef;
-  trackPromises(delayRef, stepRef, amountRef);
+  trackPromises(stepRef, amountRef);
 }
 
-function trackPromises(delay, step, amount) {
-  setTimeout(() => {
-    if (amount === 0) {
-      return;
-    }
-    createPromise(promiseCounter, delayCounter);
-
-    const intervalId = setInterval(() => {
-      if (promiseCounter === amount) {
-        clearInterval(intervalId);
-        promiseCounter = 1;
-        delayCounter = 0;
-        return;
-      }
-      promiseCounter += 1;
+function trackPromises(step, amount) {
+  for (i = 1; i <= amount; i += 1) {
+    if (i > 1) {
       delayCounter += step;
-      createPromise(promiseCounter, delayCounter);
-    }, step);
-  }, delay);
+    }
+    createPromise(i, delayCounter);
+  }
 }
 
 function createPromise(position, delay) {
   const shouldResolve = Math.random() > 0.3;
-  const promise = new Promise((resolve, reject) => {
-    if (shouldResolve) {
-      resolve({ position, delay });
-    } else {
-      reject({ position, delay });
-    }
-  });
-  processPromise(promise);
+  setTimeout(() => {
+    const promise = new Promise((resolve, reject) => {
+      if (shouldResolve) {
+        resolve({ position, delay });
+      } else {
+        reject({ position, delay });
+      }
+    });
+    processPromise(promise);
+  }, delay);
 }
 
 function processPromise(promise) {
@@ -63,3 +52,35 @@ function processPromise(promise) {
       })
     );
 }
+
+// ===== СТАРИЙ КОД (теж працює, але занадтно мудрьоний) =====
+
+// function trackPromises(delay, step, amount) {
+//   setTimeout(() => {
+//     if (amount === 0) {
+//       return;
+//     }
+//     createPromise(promiseCounter, delayCounter);
+
+//     const intervalId = setInterval(() => {
+//       if (promiseCounter === amount) {
+//         clearInterval(intervalId);
+//         promiseCounter = 1;
+//         delayCounter = 0;
+//         return;
+//       }
+//       promiseCounter += 1;
+//       delayCounter += step;
+//       createPromise(promiseCounter, delayCounter);
+//     }, step);
+//   }, delay);
+// }
+
+// function onFormSubmit(evt) {
+//   evt.preventDefault();
+//   const delayRef = Number(delay.value);
+//   const stepRef = Number(step.value);
+//   const amountRef = Number(amount.value);
+//   delayCounter = delayRef;
+//   trackPromises(delayRef, stepRef, amountRef);
+// }
